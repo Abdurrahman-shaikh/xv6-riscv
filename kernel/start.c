@@ -48,7 +48,7 @@ start()
 
   // keep each CPU's hartid in its tp register, for cpuid().
   int id = r_mhartid();
-  w_tp(id);
+  w_tp(id);  //thread pointer register contain the hardware of what we are running in kernal
 
   // switch to supervisor mode and jump to main().
   asm volatile("mret");

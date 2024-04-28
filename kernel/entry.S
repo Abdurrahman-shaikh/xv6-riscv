@@ -8,10 +8,10 @@ _entry:
         # set up a stack for C.
         # stack0 is declared in start.c,
         # with a 4096-byte stack per CPU.
-        # sp = stack0 + (hartid * 4096)
-        la sp, stack0
-        li a0, 1024*4
-        csrr a1, mhartid
+        # sp = stack0 + ((hartid + 1)* 4096)
+        la sp, stack0     //load address of stack0 in stack pointer
+        li a0, 1024*4     //load immidiate value to a0 register which is 4096-byte
+        csrr a1, mhartid  //controll status register read the mhartid which gives the unique id of cores
         addi a1, a1, 1
         mul a0, a0, a1
         add sp, sp, a0
